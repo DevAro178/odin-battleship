@@ -153,3 +153,18 @@ test("Checking Coordinates are valid", () => {
   const temp = new gameboard();
   expect(temp.isCoordValid(9, 9)).toBe(true);
 });
+
+describe("Recieve Attacks Function", () => {
+  const temp = new gameboard();
+  const shipTemp = new Ship(5);
+  temp.placeShip(shipTemp, 0, 2, "Y");
+  test("Attacking a carrier it should hit", function () {
+    expect(temp.recieveAttack(0, 4)).toBe("Hit");
+  });
+  test("Attacking a carrier it should miss", function () {
+    expect(temp.recieveAttack(4, 4)).toBe("Miss");
+  });
+  test("Attacking a carrier it should do nothing as coordinates are incorrect", function () {
+    expect(temp.recieveAttack(10, 4)).toBe(false);
+  });
+});

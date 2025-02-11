@@ -2,6 +2,14 @@ class Gameboard {
   constructor() {
     this.board = Array.from({ length: 10 }, () => Array(10).fill("undefined"));
   }
+  recieveAttack(coordX, coordY) {
+    if (this.isCoordValid(coordX, coordY)) {
+      if (this.board[coordY][coordX] != "undefined") {
+        this.board[coordY][coordX].hit();
+        return "Hit";
+      } else return "Miss";
+    } else return false;
+  }
   placeShip(shipObj, coordX, coordY, direction) {
     try {
       switch (direction) {
